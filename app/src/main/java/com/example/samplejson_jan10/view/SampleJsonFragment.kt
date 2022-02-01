@@ -11,15 +11,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.samplejson_jan10.databinding.FragmentTodoBinding
 import com.example.samplejson_jan10.model.network.ApiManager
-import com.example.samplejson_jan10.model.network.models.Post
-import com.example.samplejson_jan10.model.network.models.Todo
 import com.example.samplejson_jan10.model.network.models.user.User
 import com.example.samplejson_jan10.model.repository.SampleJsonRepository
 import com.example.samplejson_jan10.utils.Resource
 import com.example.samplejson_jan10.utils.SelectedData
 import com.example.samplejson_jan10.utils.showToast
-import com.example.samplejson_jan10.view.adapter.PostAdapter
-import com.example.samplejson_jan10.view.adapter.TodoAdapter
 import com.example.samplejson_jan10.view.adapter.UserAdapter
 import com.example.samplejson_jan10.viewmodel.SampleJsonViewModel
 
@@ -34,14 +30,6 @@ class SampleJsonFragment : Fragment() {
                 ApiManager()
             )
         )
-    }
-
-    private val todoAdapter by lazy {
-        TodoAdapter()
-    }
-
-    private val postAdapter by lazy {
-        PostAdapter()
     }
 
     private val userAdapter by lazy {
@@ -71,12 +59,6 @@ class SampleJsonFragment : Fragment() {
             }
 
             // Click Listeners
-            todoBtn.setOnClickListener {
-                viewModel.selectedDataType = SelectedData.TODOS
-            }
-            postBtn.setOnClickListener {
-                viewModel.selectedDataType = SelectedData.POSTS
-            }
             userBtn.setOnClickListener {
                 viewModel.selectedDataType = SelectedData.USERS
             }
@@ -91,15 +73,7 @@ class SampleJsonFragment : Fragment() {
                         progressBar.isVisible = false
                         btnGroup.isEnabled = true
                         when (viewModel.selectedDataType) {
-                            SelectedData.TODOS -> {
-                                jsonRv.adapter = todoAdapter
-                                todoAdapter.submitList(resource.data as List<Todo>)
-                            }
-                            SelectedData.POSTS -> {
-                                jsonRv.adapter = postAdapter
-                                postAdapter.submitList(resource.data as List<Post>)
-                            }
-                            else -> {
+                            SelectedData.USERS -> {
                                 jsonRv.adapter = userAdapter
                                 userAdapter.submitList(resource.data as List<User>)
                             }
@@ -111,11 +85,9 @@ class SampleJsonFragment : Fragment() {
                         showToast(resource.message)
                     }
                 }
-
             }
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

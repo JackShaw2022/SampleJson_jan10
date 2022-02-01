@@ -15,34 +15,16 @@ class SampleJsonViewModel(
     val data: LiveData<Resource<List<Any>>> = _data
 
     init {
-        getTodos()
+        getUsers()
     }
 
-    var selectedDataType = SelectedData.TODOS
+    var selectedDataType = SelectedData.USERS
         set(value) {
             when (value) {
-                SelectedData.TODOS -> getTodos()
-                SelectedData.POSTS -> getPosts()
                 SelectedData.USERS -> getUsers()
             }
             field = value
         }
-
-    private fun getTodos() {
-        _data.value = Resource.Loading
-        viewModelScope.launch {
-            val response = sampleJsonRepository.getTodos()
-            _data.postValue(response)
-        }
-    }
-
-    private fun getPosts() {
-        _data.value = Resource.Loading
-        viewModelScope.launch {
-            val response = sampleJsonRepository.getPosts()
-            _data.postValue(response)
-        }
-    }
 
     private fun getUsers() {
         _data.value = Resource.Loading
@@ -62,6 +44,5 @@ class SampleJsonViewModel(
                 throw RuntimeException("Could not create instance of TodoViewModel")
             }
         }
-
     }
 }

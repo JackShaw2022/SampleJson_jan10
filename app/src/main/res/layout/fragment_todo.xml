@@ -8,29 +8,7 @@
         android:id="@+id/btnGroup"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:constraint_referenced_ids="todoBtn, postBtn, userBtn"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/todoBtn"
-        style="?materialButtonOutlinedStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/todo"
-        app:layout_constraintBottom_toTopOf="@id/glh1"
-        app:layout_constraintEnd_toStartOf="@id/postBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/postBtn"
-        style="?materialButtonOutlinedStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/post"
-        app:layout_constraintBottom_toTopOf="@id/glh1"
-        app:layout_constraintEnd_toStartOf="@id/userBtn"
-        app:layout_constraintStart_toEndOf="@id/todoBtn"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:constraint_referenced_ids="userBtn"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/userBtn"
@@ -40,7 +18,7 @@
         android:text="@string/users"
         app:layout_constraintBottom_toTopOf="@id/glh1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/postBtn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
